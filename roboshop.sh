@@ -21,7 +21,7 @@ do
             --output text
         )
     else
-        ip=$(
+        IP=$(
             aws ec2 describe-instances \
             --instance-ids $INSTANCE_ID \
             --query 'Reservations[].Instances[].PrivateIpAddress' \
