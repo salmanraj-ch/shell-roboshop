@@ -24,11 +24,11 @@ VALIDATE(){
     fi
 }
 
-dnf install mysql-server -y
+dnf install mysql-server -y &>>$LOGS_FILE
 VALIDATE $? "Install MySQL server"
 
-systemctl enable mysqld
-systemctl start mysqld  
+systemctl enable mysqld &>>$LOGS_FILE
+systemctl start mysqld
 VALIDATE $? "Enable and start mysql"
 
 # get the password from the user
