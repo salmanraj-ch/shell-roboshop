@@ -31,7 +31,7 @@ systemctl enable mysqld &>>$LOGS_FILE
 systemctl start mysqld
 VALIDATE $? "Enable and start mysql"
 
-# get the password from the user
+# get the password from the user by using read command
 mysql_secure_installation --set-root-pass RoboShop@1
 VALIDATE $? "Setup root password"
 
