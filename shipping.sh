@@ -26,7 +26,7 @@ VALIDATE(){
     fi
 }
 
-dnf install maven -y &>>LOGS_FILE
+dnf install maven -y &>>$LOGS_FILE
 VALIDATE $? "Installing Maven"
 
 id roboshop &>>$LOGS_FILE
@@ -54,7 +54,7 @@ VALIDATE $? "Unzip shipping code"
 
 cd /app 
 mvn clean package &>>$LOGS_FILE
-VALIDATE $? "Installing and Buuilding shipping"
+VALIDATE $? "Installing and Building shipping"
 
 mv target/shipping-1.0.jar shipping.jar
 VALIDATE $? "Moving and Renaming shipping"
@@ -73,7 +73,7 @@ if [ $? -ne 0 ]; then
     mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/master-data.sql &>>$LOGS_FILE
     VALIDATE $? "Loaded data into MySQL"
 else
-    echo -e "data is already loaded ... $Y SKIPPING $n"
+    echo -e "data is already loaded ... $Y SKIPPING $N"
 fi 
     
 systemctl enable shipping &>>$LOGS_FILE
